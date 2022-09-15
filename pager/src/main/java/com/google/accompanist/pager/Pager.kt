@@ -236,6 +236,7 @@ fun HorizontalPager(
         endContentPadding = contentPadding.calculateEndPadding(LayoutDirection.Ltr),
     ),
     key: ((page: Int) -> Any)? = null,
+    contentType: (index: Int) -> Any? = { null },
     userScrollEnabled: Boolean = true,
     content: @Composable PagerScope.(page: Int) -> Unit,
 ) {
@@ -249,6 +250,7 @@ fun HorizontalPager(
         verticalAlignment = verticalAlignment,
         flingBehavior = flingBehavior,
         key = key,
+        contentType = contentType,
         contentPadding = contentPadding,
         userScrollEnabled = userScrollEnabled,
         content = content
@@ -292,6 +294,7 @@ fun VerticalPager(
         endContentPadding = contentPadding.calculateBottomPadding(),
     ),
     key: ((page: Int) -> Any)? = null,
+    contentType: (index: Int) -> Any? = { null },
     userScrollEnabled: Boolean = true,
     content: @Composable PagerScope.(page: Int) -> Unit,
 ) {
@@ -305,6 +308,7 @@ fun VerticalPager(
         horizontalAlignment = horizontalAlignment,
         flingBehavior = flingBehavior,
         key = key,
+        contentType = contentType,
         contentPadding = contentPadding,
         userScrollEnabled = userScrollEnabled,
         content = content
@@ -322,6 +326,7 @@ internal fun Pager(
     isVertical: Boolean,
     flingBehavior: FlingBehavior,
     key: ((page: Int) -> Any)?,
+    contentType: (index: Int) -> Any?,
     contentPadding: PaddingValues,
     userScrollEnabled: Boolean,
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
@@ -400,6 +405,7 @@ internal fun Pager(
             items(
                 count = count,
                 key = key,
+                contentType = contentType,
             ) { page ->
                 Box(
                     Modifier
@@ -429,6 +435,7 @@ internal fun Pager(
             items(
                 count = count,
                 key = key,
+                contentType = contentType,
             ) { page ->
                 Box(
                     Modifier
